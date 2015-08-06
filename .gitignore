@@ -5,3 +5,4 @@
 .env
 .project
 /vendor/*
+composer.lock
