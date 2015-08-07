@@ -4,5 +4,6 @@
 .env.php
 .env
 .project
+/node_modules/*
 /vendor/*
 composer.lock

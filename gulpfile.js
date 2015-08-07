@@ -1,4 +1,6 @@
 var elixir = require('laravel-elixir');
+require("laravel-elixir-uglify");
+require("laravel-elixir-requirejs");
 
 /*
  |--------------------------------------------------------------------------
@@ -12,5 +14,18 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.scss');
+    mix
+    .uglify('./node_modules/requirejs/require.js')  
+    .sass('app.scss')
+    .version("css/app.css")
+    .requirejs("ready.js", {
+    	baseUrl: 'node_modules/domready/',
+    	name: 'ready',
+    	out: './resources/assets/js/core/domready.js'
+    })
+    .requirejs("app.js", {
+    	baseUrl: 'resources/assets/js/',
+    	name: 'app',
+    	out: 'app.js'
+    });
 });
